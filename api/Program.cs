@@ -1,4 +1,5 @@
-﻿using api.Data;
+﻿using api;
+using api.Data;
 using api.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,12 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/clients", async (IClientRepository clientRepository) =>
-{
-    return await clientRepository.Get();
-})
-.WithName("get clients");
-
+app.ConfigureAPI();
 app.UseCors();
 
 // seed data
