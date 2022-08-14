@@ -1,6 +1,7 @@
 ﻿using api;
 using api.Data;
 using api.Repositories;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,22 +14,15 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
 // cors
-services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder => builder
-        .SetIsOriginAllowedToAllowWildcardSubdomains()
-        .WithOrigins("http://localhost:3000")
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials()
-        .Build());
-});
+services.AddCors();
 
 // ioc
 services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "Test"));
 
 services.AddScoped<DataSeeder>();
 services.AddScoped<IClientRepository, ClientRepository>();
+
+
 
 var app = builder.Build();
 
@@ -41,7 +35,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.ConfigureAPI();
-app.UseCors();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // seed data
 using (var scope = app.Services.CreateScope())

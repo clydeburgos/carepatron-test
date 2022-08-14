@@ -6,7 +6,7 @@ namespace api.Repositories
 {
     public interface IClientRepository
     {
-        Task<Client[]> Get();
+        Task<Client[]> Get(string filter);
         Task Create(Client client);
         Task Update(Client client);
     }
@@ -22,13 +22,25 @@ namespace api.Repositories
 
         public async Task Create(Client client)
         {
+            client.Id = Guid.NewGuid().ToString();
+
             await dataContext.AddAsync(client);
             await dataContext.SaveChangesAsync();
         }
 
-        public Task<Client[]> Get()
+        public async Task<Client[]> Get(string filter)
         {
-            return dataContext.Clients.ToArrayAsync();
+            filter = filter.ToLower();
+
+            if (string.IsNullOrEmpty(filter)) 
+            {
+                return await dataContext.Clients.ToArrayAsync();
+            }
+            return await dataContext.Clients
+                .Where(c => c.FirstName.ToLower().Contains(filter) 
+                || c.LastName.ToLower().Contains(filter) 
+                || c.Email.ToLower().Contains(filter))
+                .ToArrayAsync();
         }
 
         public async Task Update(Client client)

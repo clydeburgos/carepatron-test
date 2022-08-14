@@ -10,8 +10,8 @@ namespace api
             app.MapPut("/clients", UpdateClient);
         }
 
-        private static async Task<IResult> GetClients(IClientRepository clientRepo) {
-            var clients = await clientRepo.Get();
+        private static async Task<IResult> GetClients(string ? filter, IClientRepository clientRepo) {
+            var clients = await clientRepo.Get(filter);
             return Results.Ok(clients);
         }
 
