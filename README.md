@@ -65,3 +65,6 @@ You should now have the API running on `localhost:5044` and the UI running on `l
 - Adding a proper validator handler on UI to handle required fields and / or value formatting
 - Completing the task via REACT
 - Deploying to a cloud enviornment
+
+### How was this test overall
+- Overall it's good, to be honest, there were some issues I've encountered along the way, I had to do extra steps to keep some libraries working as I had conflict issues with the current version i have on machine versus the one I installed. Well, that's the normal day of us engineers so it's fine. I think I have really spent so many time on backend and azure that I have not touched ui for a couple of months made me forget a lot of stuff!
