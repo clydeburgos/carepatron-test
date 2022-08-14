@@ -58,4 +58,10 @@ You should now have the API running on `localhost:5044` and the UI running on `l
 ### Create client modal
 <img width="1083" alt="Screen Shot 2022-07-29 at 6 51 58 PM" src="https://user-images.githubusercontent.com/14010084/181700544-b2ea60fd-2dbd-491b-9197-282638143080.png">
 
-
+### Missing Pieces
+- Adding FluentValidation (backend) to handle validation on the backend (Attempted but failed, if more time was given, would have properly achieved it)
+- Adding toastr (ui) for the validation, and adding red highlighting for the form inputs that have dirty / error values
+- Finish the update section (adding new ui components to handle row click events on the list and then open the modal with the details) then update
+- Adding a proper validator handler on UI to handle required fields and / or value formatting
+- Completing the task via REACT
+- Deploying to a cloud enviornment
