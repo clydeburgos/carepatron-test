@@ -29,7 +29,10 @@
         </div>
     </div>
     <div class="d-flex justify-content-end pt-3">
-        <button type="button" class="btn btn-primary" (click)="createClient()" [disabled]="isLoading">{{ isLoading ? 'Creating Client...' : 'Create Client' }} </button>
+        <button type="button" class="btn btn-primary" (click)="createClient()" 
+            [disabled]="isLoading || (!client.firstName || !client.lastName || !client.email || !client.phoneNumber)">
+            {{ isLoading ? 'Creating Client...' : 'Create Client' }} 
+        </button> &nbsp;
         <button type="button" class="btn btn-secondary" (click)="closeDialog()">Close</button>
     </div>
 </div>
